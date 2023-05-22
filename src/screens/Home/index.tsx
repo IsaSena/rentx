@@ -13,8 +13,11 @@ import {
 } from './styles';
 
 import { Car } from "../../components/Car";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home(){
+    const navigation = useNavigation();
+
     const carData = {
         brand: 'Audi',
         name: 'RS 5 Coupé',
@@ -25,6 +28,10 @@ export function Home(){
         },
     
         thumbnail: 'https://www.pngmart.com/files/22/Audi-RS5-PNG-HD.png'
+    }
+
+    function handleCarDetails(){
+        navigation.navigate('CarDetails');
     }
 
     return (
@@ -51,7 +58,8 @@ export function Home(){
         <CarList
         data={[1,2,3,4,5,6,7,8]}
         keyExtractor={item => String(item)}
-        renderItem={({ item }) => <Car data={carData} />}
+        renderItem={({ item }) => 
+            <Car data={carData} onPress={handleCarDetails}/>}
         />
         
 

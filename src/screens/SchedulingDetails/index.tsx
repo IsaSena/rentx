@@ -11,10 +11,23 @@ import {
     Rent,
     Period,
     Price,
-    About,
     Acessories,
-    Footer
+    Footer,
+    RentalPeriod,
+    CalendarIcon,
+    DateInfo,
+    DateTitle,
+    DateValue,
+    RentalPrice,
+    RentalPriceLabel,
+    RentalPriceDetails,
+    RentalPriceQuota,
+    RentalPriceTotal,
 } from './styles';
+
+import { Feather } from '@expo/vector-icons';
+import { useTheme } from "styled-components";
+import { RFValue } from "react-native-responsive-fontsize";
 
 import speedSvg from '../../assets/speed.svg'
 import accelerationSvg from '../../assets/acceleration.svg'
@@ -23,20 +36,20 @@ import gasolineSvg from '../../assets/gasoline.svg'
 import exchangeSvg from '../../assets/exchange.svg'
 import peopleSvg from '../../assets/people.svg'
 
-
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
 import { Acessory } from "../../components/Acessory";
 import { Button } from "../../components/Button";
+
 import { useNavigation } from "@react-navigation/native";
 
+export function SchedulingDetails(){
+    const theme = useTheme();
 
-
-export function CarDetails(){
     const navigation = useNavigation();
 
     function handleConfirmRental(){
-        navigation.navigate('Scheduling');
+        navigation.navigate('SchedulingComplete');
     }
 
     return(
@@ -73,13 +86,47 @@ export function CarDetails(){
                     <Acessory name="2 pessoas" icon={peopleSvg}/>
                 </Acessories>
 
-                <About>
-                    Um carro maravilhoso pra fazer um churrasco na sua casa, na rua, em qualquer lugar! Você pode estar se divertindo no shopping e seu carro em chamas!
-                </About>
+                <RentalPeriod>
+                    <CalendarIcon>
+                        <Feather
+                        name="calendar"
+                        size={RFValue(24)}
+                        color={theme.colors.shape}
+                        />
+                    </CalendarIcon>
+
+                    <DateInfo>
+                        <DateTitle>DE</DateTitle>
+                        <DateValue>18/06/2023</DateValue>
+                    </DateInfo>
+
+                    <Feather
+                        name="chevron-right"
+                        size={RFValue(10)}
+                        color={theme.colors.text}
+                    />
+
+                    <DateInfo>
+                        <DateTitle>DE</DateTitle>
+                        <DateValue>18/06/2023</DateValue>
+                    </DateInfo>
+                </RentalPeriod>
+
+                <RentalPrice>
+                    <RentalPriceLabel>Total</RentalPriceLabel>
+                    <RentalPriceDetails>
+                        <RentalPriceQuota>R$580 x3 diárias</RentalPriceQuota>
+                        <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+                    </RentalPriceDetails>
+                </RentalPrice>
             </Content>
 
             <Footer>
-                <Button title="Escolher período do aluguel" onPress={handleConfirmRental}/>
+                <Button 
+                    title="Alugar agora" 
+                    color={theme.colors.success} 
+                    onPress={handleConfirmRental}
+                />
             </Footer>
 
         </Container>

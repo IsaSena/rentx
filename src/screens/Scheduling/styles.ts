@@ -18,6 +18,7 @@ export const Header = styled.View`
 
     justify-content: center;
     padding: 25px;
+    padding-top: ${getStatusBarHeight() + 30}px;
 `;
 
 export const Title = styled.Text`
@@ -34,6 +35,8 @@ export const RentalPeriod = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    margin: 32px 0;
 `;
 
 export const DateInfo = styled.View`
@@ -56,4 +59,17 @@ export const DateValue = styled.Text<DateValueProps>`
         border-bottom-color: ${theme.colors.text};
         padding-bottom: 5px;
     `};
+`;
+
+export const Content = styled.ScrollView.attrs({
+    contentContainerStyle: {
+        paddingBottom: 24
+    },
+    showsVerticalScrollIndicator: false
+})`
+
+`;
+
+export const Footer = styled.View`
+    padding: 24px;
 `;
