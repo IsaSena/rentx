@@ -21,21 +21,25 @@ export function StackRoutes(){
             <Screen 
             name="CarDetails"
             component={CarDetails}
+            options={{headerShown:false}}
             />
 
             <Screen 
             name="Scheduling"
             component={Scheduling}
+            options={{headerShown:false}}
             />
 
             <Screen 
             name="SchedulingDetails"
             component={SchedulingDetails}
+            options={{headerShown:false}}
             />
             
             <Screen 
             name="SchedulingComplete"
             component={SchedulingComplete}
+            options={{headerShown:false}}
             />
         </Navigator>
     )

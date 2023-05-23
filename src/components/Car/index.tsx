@@ -16,8 +16,6 @@ import {
 } from './styles'
 import { TouchableOpacityProps } from 'react-native';
 
-
-
 interface Props extends TouchableOpacityProps{
     data : CarDTO;
 }

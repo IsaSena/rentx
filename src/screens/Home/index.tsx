@@ -14,6 +14,7 @@ import {
     CarList
 } from './styles';
 
+import { Load } from "../../components/Load";
 import { Car } from "../../components/Car";
 import { useNavigation } from "@react-navigation/native";
 
@@ -22,20 +23,8 @@ export function Home(){
     const [ loading, setLoading ] = useState(true);
     const navigation = useNavigation<any>();
 
-    const carData = {
-        brand: 'Audi',
-        name: 'RS 5 Coupé',
-    
-        rent: {
-            period: 'Ao dia',
-            price: 120,
-        },
-    
-        thumbnail: 'https://www.pngmart.com/files/22/Audi-RS5-PNG-HD.png'
-    }
-
-    function handleCarDetails(){
-        navigation.navigate('CarDetails');
+    function handleCarDetails( car : CarDTO ){
+        navigation.navigate('CarDetails', { car });
     }
 
     useEffect(() =>{
@@ -73,11 +62,16 @@ export function Home(){
             </HeaderContent>
         </Header>
 
-        <CarList
+        { loading ? <Load /> :
+
+            <CarList
             data={cars}
-            keyExtractor={(item: CarDTO) => item.id}
-            renderItem={({ item }: { item: CarDTO }) => <Car data={item} onPress={handleCarDetails} />}
-/>
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => 
+            <Car data={item} onPress={() => handleCarDetails(item)} />}
+            />
+        }
+
     </Container>
     )
 }
