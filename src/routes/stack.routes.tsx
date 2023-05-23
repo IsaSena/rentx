@@ -11,10 +11,11 @@ const { Navigator, Screen } = createStackNavigator();
 
 export function StackRoutes(){
     return (
-        <Navigator headerMode="none">
+        <Navigator>
             <Screen 
             name="Home"
             component={Home}
+            options={{headerShown:false}}
             />
 
             <Screen 
