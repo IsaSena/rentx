@@ -16,13 +16,7 @@ import {
     Footer
 } from './styles';
 
-import speedSvg from '../../assets/speed.svg'
-import accelerationSvg from '../../assets/acceleration.svg'
-import forceSvg from '../../assets/force.svg'
-import gasolineSvg from '../../assets/gasoline.svg'
-import exchangeSvg from '../../assets/exchange.svg'
-import peopleSvg from '../../assets/people.svg'
-
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon'
 
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -41,7 +35,7 @@ export function CarDetails(){
     const { car } = route.params as Params; /*os parametros passados tem que ser conforme x*/
 
     function handleConfirmRental(){
-        navigation.navigate('Scheduling');
+        navigation.navigate('Scheduling', { car });
     }
 
     function handleBack(){
@@ -79,7 +73,7 @@ export function CarDetails(){
                             <Acessory 
                                 key={accessory.type}
                                 name={accessory.name} 
-                                icon={speedSvg}
+                                icon={getAccessoryIcon(accessory.type)}
                             />
                         ))
                     }
